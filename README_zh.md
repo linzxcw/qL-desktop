@@ -26,12 +26,12 @@ qL-desktop 致力于提供最简单的操作，满足绝大部分需求。
 >创建docker-compose.yml文件
 ```bash
 version: "3.8"
-  services:
+services:
     qldesktop:
       container_name: qL-desktop
       environment:
          - TZ=Asia/Shanghai
-      image: qldesktop
+      image: qilinzhu/qldesktop
       restart: always
       ports:
          - 9001:9001
