@@ -43,7 +43,6 @@ qL-desktop 主要提供了下述使用方法：
              volumes:
                   - ./data:/qL-desktop/data   
 ```
-
    创建容器
 ```bash
    docker compose up -d
