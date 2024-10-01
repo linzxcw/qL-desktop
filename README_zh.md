@@ -25,18 +25,19 @@ qL-desktop 主要提供了下述使用方法：
 2. docker安装（推荐）
 
    创建docker-compose.yml文件\
-   `version: "3.8"\
-      services:\
-        qldesktop:\ 
-             container_name: qL-desktop\
-             environment:\
-                   - TZ=Asia/Shanghai\
-             image: qldesktop\
-             restart: always\
+```bash
+   version: "3.8"
+      services:
+        qldesktop:
+             container_name: qL-desktop
+             environment:
+                   - TZ=Asia/Shanghai
+             image: qldesktop
+             restart: always
              ports:
-                   - 9001:9001\
-                   - 6006:6006`\
-
+                   - 9001:9001
+                   - 6006:6006`
+```
 8. 从 GitHub releases 下载二进制与安装包
 
 详见 [**qL-desktop - Docs**](https://qL-desktop.org/docs/prologue/introduction/)
