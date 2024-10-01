@@ -14,9 +14,7 @@ qL-desktop 致力于提供最简单的操作，满足绝大部分需求。
 ## 使用方法
 
 qL-desktop 主要提供了下述使用方法：
-1. 准备工作
-   
-   被控设备安装vncserver：
+1. 准备工作（被控设备安装vncserver）
    
     windows：安装[UltraVNC](https://github.com/ultravnc/UltraVNC)，运行UltraVNC软件，在任务栏右下角找到UltraVNC的图标，右键点击选择Admin Properties设置密码。
 
