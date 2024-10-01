@@ -38,7 +38,7 @@ qL-desktop 主要提供了下述使用方法：
                    - 9001:9001
                    - 6006:6006
 ```
-   注：用户数据在/qL-desktop/data文件夹中，如果需要映射，先解压初始data文件夹到安装目录，再运行容器。
+>注：用户数据在/qL-desktop/data文件夹中，如果需要映射，先解压初始data文件夹到安装目录，再运行容器。
 ```bash   
              volumes:
                   - ./data:/qL-desktop/data   
