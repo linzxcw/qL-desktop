@@ -71,9 +71,9 @@ python -m websockify --web ./novnc --target-config=./data/token/vnc_tokens.conf 
 
 4. Log in to the web page
 
-  Open http://127.0.0.1:9001
+  Open http://127.0.0.1:6006
   The default username and password are admin and password
-  The default server address is http://server_ip:6006
+  The default server address is http://server_ip:9001
 
 
 
