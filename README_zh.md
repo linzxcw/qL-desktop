@@ -51,7 +51,7 @@ docker compose up -d
 
 3. 从 GitHub releases 下载二进制与安装包
 
-   >确保安装了python，推荐版本python3.8，git拉取代码或项目地址下载压缩包
+>确保安装了python，推荐版本python3.8，git拉取代码或项目地址下载压缩包
 ```bash
 git clone https://github.com/linzxcw/qL-desktop.git
 ```
@@ -68,13 +68,15 @@ cd /qL-desktop
 python -m websockify --web ./novnc --target-config=./data/token/vnc_tokens.conf 9001 & python app.py
 ```
 
+4. 登录网页
 
-详见 [**qL-desktop - Docs**](https://qL-desktop.org/docs/prologue/introduction/)
+  打开http://127.0.0.1:9001,用户名和密码默认是admin、password，服务器地址默认是 http://服务器ip:6006
+
 
 
 ## 界面截图
 
-<img src="https://i.loli.net/2020/04/19/kp2oedPiSzVwgHJ.png" border="0">
+<img src="https://s2.loli.net/2024/10/01/nHivCNbOTyE6omY.png" border="0">
 
 
 ## 注意
@@ -85,15 +87,10 @@ python -m websockify --web ./novnc --target-config=./data/token/vnc_tokens.conf 
 
 ## 感谢
 
-[hq450/fancyss](https://github.com/hq450/fancyss)
+[ultravnc/UltraVNC](https://github.com/ultravnc/UltraVNC)
 
-[ToutyRater/v2ray-guide](https://github.com/ToutyRater/v2ray-guide/blob/master/routing/sitedata.md)
+[novnc/noVNC](https://github.com/novnc/noVNC)
 
-[nadoo/glider](https://github.com/nadoo/glider)
-
-[Loyalsoldier/v2ray-rules-dat](https://github.com/Loyalsoldier/v2ray-rules-dat)
-
-[zfl9/ss-tproxy](https://github.com/zfl9/ss-tproxy/blob/master/ss-tproxy)
 
 ## 协议
 
