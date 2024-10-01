@@ -39,7 +39,7 @@ version: "3.8"
          - 6006:6006
 ```
    
-   >Note: User data is in the /qL-desktop/data folder. If you need to map it, first extract the initial data folder to the installation directory, then run the container.
+   >Note: User data is in the /qL-desktop/data folder. If you need to map it, first extract the initial [data](https://github.com/linzxcw/qL-desktop/releases/tag/v1.0.1/data.zip) folder to the installation directory, then run the container.
 ```bash   
       volumes:
          - ./data:/qL-desktop/data   
