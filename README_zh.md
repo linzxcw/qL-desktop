@@ -22,14 +22,21 @@ qL-desktop 主要提供了下述使用方法：
 
     Linux：安装tigervnc-server，配置用户和密码后启动vncserver服务。[详见教程](https://blog.csdn.net/u013105927/article/details/135550558)
 	      
-1. docker安装（推荐）
-   1.1 
-2. 从 GitHub releases 下载二进制与安装包
-3. 自建 [scoop bucket](https://github.com/qL-desktop/qL-desktop-scoop) (Windows 用户)
-4. 自建 [homebrew tap](https://github.com/qL-desktop/homebrew-qL-desktop)
-5. 自建 [OpenWrt 仓库](https://github.com/qL-desktop/qL-desktop-openwrt) 和 OpenWrt 官方软件源（从 OpenWrt 22.03 版本开始提供）
-6. 微软 winget: https://winstall.app/apps/qL-desktop.qL-desktop
-7. Ubuntu Snap: https://snapcraft.io/qL-desktop
+2. docker安装（推荐）
+
+   创建docker-compose.yml文件
+   `version: "3.8"
+      services:
+        qldesktop: 
+             container_name: qL-desktop
+             environment:
+                   - TZ=Asia/Shanghai
+             image: qldesktop
+             restart: always
+             ports:
+                   - 9001:9001
+                   - 6006:6006`
+
 8. 从 GitHub releases 下载二进制与安装包
 
 详见 [**qL-desktop - Docs**](https://qL-desktop.org/docs/prologue/introduction/)
