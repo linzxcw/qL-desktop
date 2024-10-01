@@ -16,7 +16,8 @@ qL-desktop 致力于提供最简单的操作，满足绝大部分需求。
 qL-desktop 主要提供了下述使用方法：
 1. 准备工作
    被控设备安装vncserver：
-       windows：安装[UltraVNC](https://github.com/ultravnc/UltraVNC)，运行UltraVNC软件，在                 任务栏右下角找到UltraVNC的图标，右键点击选择Admin Properties设置密码。
+   
+       windows：安装[UltraVNC](https://github.com/ultravnc/UltraVNC)，运行UltraVNC软件，在任务栏右下角找到UltraVNC的图标，右键点击选择Admin Properties设置密码。
 	   mac：进入“系统偏好设置”，然后选择“共享”，勾选“屏幕共享”选项，设置VNC连入的密码。
 	   Linux：安装tigervnc-server，配置用户和密码后启动vncserver服务。[详见教程](https://blog.csdn.net/u013105927/article/details/135550558)
 	      
