@@ -38,7 +38,7 @@ version: "3.8"
          - 6006:6006
 ```
    
-   >注：用户数据在/qL-desktop/data文件夹中，如果需要映射，先解压初始data文件夹到安装目录，再运行容器。
+   >注：用户数据在/qL-desktop/data文件夹中，如果需要映射，先解压初始[data](https://github.com/linzxcw/qL-desktop/releases/tag/v1.0.1/data.zip)文件夹到安装目录，再运行容器。
 ```bash   
       volumes:
          - ./data:/qL-desktop/data   
