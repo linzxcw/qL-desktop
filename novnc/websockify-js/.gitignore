@@ -1,0 +1,4 @@
+websockify/node_modules
+.project
+target.cfg
+target.cfg.d

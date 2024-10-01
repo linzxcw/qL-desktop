@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/static/logo.ico" type="image/x-icon">
+    <title>登录qL-desktop</title>
+    <link rel="stylesheet" href="./static/ui.css">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);
+        }
+        .login-container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+
+<div class="login-container" style="color: white;">
+    <img src="./static/logo-white.png" alt="logo" width="100" height="100" style="display: block; margin: 0 auto;">
+    <h3 style="padding-left: 75px;padding-bottom: 20px;margin-top: 10px;margin-bottom: 5px;">qL-desktop</h2>
+    <form id="loginForm" style="width: 288px; height: 282px;">
+        <div class="form-group">
+            <label for="username"  style="color: white;">用户名</label>
+            <input type="text" class="form-control" id="username" value="admin" readonly>
+        </div>
+        <div class="form-group">
+            <label for="password"  style="color: white;">密码</label>
+            <input type="password" class="form-control" id="password" required>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width: 290px; margin-top: 20px;">登录</button>
+    </form>
+</div>
+
+<script>
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        
+        const password = document.getElementById('password').value;
+        
+        fetch('/api/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username: 'admin', password: password })
+        })
+        .then(response => {
+            if (response.ok) {
+                window.location.href = '/hosts';  // 登录成功后跳转到主页面
+            } else {
+                alert('登录失败：密码错误');
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,223 @@
+
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/static/logo.ico" type="image/x-icon">
+    <title>qL-desktop</title>
+    <link rel="stylesheet" href="./static/ui.css">
+    <link rel="stylesheet" href="./static/icon.css">
+    <style>
+        body {
+            padding: 20px;
+        }
+        table {
+            width: 100%;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        #modalForm {
+            display: none;
+        }
+        /* 确保图标和标题紧挨着 */
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start; /* 确保内容左对齐 */
+        }
+        .header-container img {
+            width: 60px;
+            height: 60px;
+            margin-right: 10px; /* 图标和文字之间的间距 */
+        }
+        /* 隐藏 dropdown 菜单 */
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+        .dropdown-menu.show {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+<div class="button-group mb-3" style="margin-left: 0px;padding-left: 0px;margin-right: 10px;">
+    <div class="d-flex justify-content-between mb-3">
+        <!-- 主机列表标题和图标 -->
+        <div class="header-container">
+            <img src="/static/logo.png" alt="logo">
+            <h1>qL-desktop</h1>
+        </div>
+        <div class="dropdown">
+            <!-- 账号管理按钮 -->
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin-top: 30px; width: 63.6px; height: 43.6px;">
+                <i class=class="dropdown-btn" id="dropdownMenuButton">
+                <div class="menu-icon">
+                    <div style="margin-top: 5px;"></div>
+                    <div style="margin-top: 5px; height: 2.2px;"></div>
+                    <div style="margin-top: 5px;"></div>
+                </i>  <!-- 三条横线的图标 -->
+            </button>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#" id="changePasswordBtn">更改密码</a>
+                <a class="dropdown-item" href="#" id="logoutBtn">退出登录</a>
+            </div>
+        </div>
+    </div>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#" id="changePasswordBtn">更改密码</a>
+                <a class="dropdown-item" href="#" id="logoutBtn">退出登录</a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="button-group mb-3">
+        <button id="addButton" class="btn btn-primary">新建</button>
+        <button id="deleteSelectedButton" class="btn btn-danger">删除</button>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th><input type="checkbox" id="selectAll"></th>
+                <th>名称</th>
+                <th>协议</th>
+                <th>网络</th>
+                <th>状态</th>
+                <th>所有者</th>
+                <th>创建时间</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody id="hostTable">
+            <!-- 主机数据将会动态加载到这里 -->
+        </tbody>
+    </table>
+</div>
+
+<!-- 新建/编辑主机的弹窗 -->
+<div id="modalForm" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">主机信息</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closeModalButton">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="hostForm">
+                    <input type="hidden" id="editingHostId">
+                    <div class="form-group">
+                        <label for="hostName">名称</label>
+                        <input type="text" class="form-control" id="hostName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="hostAddress">主机地址</label>
+                        <input type="text" class="form-control" id="hostAddress" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="hostPort">端口</label>
+                        <input type="text" class="form-control" id="hostPort" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">密码</label>
+                        <input type="password" class="form-control" id="password">
+                    </div>
+                    <div class="form-group">
+                        <label for="serverAddress">服务器地址</label>
+                        <input type="text" class="form-control" id="serverAddress" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">保存</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 更改密码的弹窗 -->
+<div id="changePasswordModal" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">更改密码</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closeChangePasswordModal">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="changePasswordForm">
+                    <div class="form-group">
+                        <label for="oldPassword">原密码</label>
+                        <input type="password" class="form-control" id="oldPassword" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="newPassword">新密码</label>
+                        <input type="password" class="form-control" id="newPassword" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="repeatPassword">重复密码</label>
+                        <input type="password" class="form-control" id="repeatPassword" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">修改密码</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="/static/js/main.js"></script>
+<script>
+    // 处理更改密码点击
+    document.getElementById('changePasswordBtn').addEventListener('click', function() {
+        document.getElementById('changePasswordModal').style.display = 'block';
+    });
+
+    // 处理更改密码表单提交
+    document.getElementById('changePasswordForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const oldPassword = document.getElementById('oldPassword').value;
+        const newPassword = document.getElementById('newPassword').value;
+        const repeatPassword = document.getElementById('repeatPassword').value;
+
+        fetch('/api/change-password', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ oldPassword: oldPassword, newPassword: newPassword, repeatPassword: repeatPassword })
+        })
+        .then(response => {
+            if (response.ok) {
+                alert('密码已更改');
+                document.getElementById('changePasswordModal').style.display = 'none';  // 关闭弹窗
+            } else {
+                return response.json().then(data => {
+                    alert(data.message);  // 显示错误信息
+                });
+            }
+        });
+    });
+
+    // 处理退出登录
+    document.getElementById('logoutBtn').addEventListener('click', function() {
+        window.location.href = '/';  // 跳转到登录页面
+    });
+
+    // 关闭更改密码的弹窗
+    document.getElementById('closeChangePasswordModal').addEventListener('click', function() {
+        document.getElementById('changePasswordModal').style.display = 'none';
+    });
+</script>
+
+</body>
+</html>

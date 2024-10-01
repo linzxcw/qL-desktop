@@ -1,0 +1,9 @@
+- Update CHANGES.txt and websockify/package.json and commit
+- Create version tag and tarball from tag
+    WVER=0.1.0
+    git tag v${WVER}
+    git push origin master
+    git push origin v${WVER}
+- Register with npmjs.org (once)
+- Upload websockify.js npmjs.org package
+    npm publish websockify
