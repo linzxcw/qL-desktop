@@ -64,7 +64,7 @@ pip install -i https://pypi.tuna.tsinghua.edu.cn/simple numpy flask #换国内�
 
    >运行命令
 ```bash   
-cd /qL-desktop
+cd ./qL-desktop
 python -m websockify --web ./novnc --target-config=./data/token/vnc_tokens.conf 9001 & python app.py
 ```
 
