@@ -32,7 +32,7 @@ version: "3.8"
       container_name: qL-desktop
       environment:
          - TZ=Asia/Shanghai
-      image: qldesktop
+      image: qilinzhu/qldesktop:latest
       restart: always
       ports:
          - 9001:9001
