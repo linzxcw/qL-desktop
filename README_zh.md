@@ -70,11 +70,11 @@ python -m websockify --web ./novnc --target-config=./data/token/vnc_tokens.conf 
 
 4. 登录网页
 
-  打开http://127.0.0.1:9001
+  打开http://127.0.0.1:6006
   
   用户名和密码默认是admin、password
   
-  服务器地址默认是 http://服务器ip:6006
+  服务器地址默认是 http://服务器ip:9001
 
 
 
