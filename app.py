@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request, send_from_directory
+from flask import Flask, jsonify, request, send_from_directory, session, redirect, url_for
 import os
 import json
 from datetime import datetime
@@ -29,11 +29,22 @@ def load_user():
             return json.load(file)
     except json.JSONDecodeError:
         return {'username': 'admin', 'password': 'password'}  # 处理 JSON 错误
+# 设置一个 secret key 用于加密会话数据
+app.secret_key = '99856214asdty'  # 请使用一个更安全的随机字符串
+
+# 示例用户信息（可从数据库中读取）
+USER_INFO = {
+    'username': 'admin',
+    'password': 'password'
+}
 
 # 读取所有主机信息
 def load_hosts():
     with open(DATA_FILE, 'r') as file:
         return json.load(file)
+# 检查用户是否登录
+def is_logged_in():
+    return session.get('logged_in')
 
 # 保存主机信息到 vnc.conf
 def save_hosts(hosts):
@@ -51,9 +62,24 @@ def save_tokens(hosts):
 def login():
     data = request.get_json()
     user = load_user()
-    if data['username'] == user['username'] and data['password'] == user['password']:
+    if data['username'] == USER_INFO['username'] and data['password'] == USER_INFO['password']:
+        session['logged_in'] = True  # 登录成功，设置会话
         return jsonify({'message': '登录成功'}), 200
-    return jsonify({'message': '登录失败：密码错误'}), 401
+    return jsonify({'message': '登录失败：用户名或密码错误'}), 401
+
+
+# 注销路由
+@app.route('/logout')
+def logout():
+    session.pop('logged_in', None)  # 注销用户会话
+    return redirect('/')
+
+# 受保护的主机列表路由
+@app.route('/hosts')
+def hosts_page():
+    if not is_logged_in():
+        return redirect('/')  # 如果未登录，重定向到登录页面
+    return send_from_directory('.', 'index.html')
 
 # 修改密码路由
 @app.route('/api/change-password', methods=['POST'])
@@ -78,10 +104,7 @@ def change_password():
 def login_page():
     return send_from_directory('.', 'login.html')
 
-# 提供主机列表页面
-@app.route('/hosts')
-def hosts_page():
-    return send_from_directory('.', 'index.html')  # 确保这里指向主机列表页面
+
 
 # 获取主机列表
 @app.route('/api/assets', methods=['GET'])
