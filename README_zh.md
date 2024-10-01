@@ -1,6 +1,6 @@
 # qL-desktop
 
-[**English**](https://github.com/linzxcw/qL-desktop/main/README.md)&nbsp;&nbsp;&nbsp;[**简体中文**](https://github.com/linzxcw/qL-desktop/main/README_zh.md)
+[**English**](https://github.com/linzxcw/qL-desktop)&nbsp;&nbsp;&nbsp;[**简体中文**](https://github.com/linzxcw/qL-desktop/blob/main/README_zh.md)
 
 qL-desktop 是一个网页就能远程控制所有设备的web客户端，让用户随时随地连接家里或公司的设备。与市面上其他远程软件相比，最大不同的是：qL-desktop使用 [noVNC](https://github.com/novnc/noVNC)开源软件实现，不用担心隐私被泄露。
 
