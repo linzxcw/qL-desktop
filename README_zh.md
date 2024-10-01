@@ -23,7 +23,7 @@ qL-desktop 致力于提供最简单的操作，满足绝大部分需求。
 	      
 2. docker安装（推荐）
 
-   创建docker-compose.yml文件
+>创建docker-compose.yml文件
 ```bash
 version: "3.8"
   services:
@@ -38,31 +38,31 @@ version: "3.8"
          - 6006:6006
 ```
    
-   注：用户数据在/qL-desktop/data文件夹中，如果需要映射，先解压初始data文件夹到安装目录，再运行容器。
+   >注：用户数据在/qL-desktop/data文件夹中，如果需要映射，先解压初始data文件夹到安装目录，再运行容器。
 ```bash   
       volumes:
          - ./data:/qL-desktop/data   
 ```
   
-  创建容器
+  >创建容器
 ```bash
 docker compose up -d
 ```
 
 3. 从 GitHub releases 下载二进制与安装包
 
-   确保安装了python，推荐版本python3.8，git拉取代码或项目地址下载压缩包
+   >确保安装了python，推荐版本python3.8，git拉取代码或项目地址下载压缩包
 ```bash
 git clone https://github.com/linzxcw/qL-desktop.git
 ```
    
-   安装numpy和flask模块
+   >安装numpy和flask模块
 ```bash   
 pip install numpy flask #不换源安装
 pip install -i https://pypi.tuna.tsinghua.edu.cn/simple numpy flask #换国内源安装
 ```
 
-   运行命令
+   >运行命令
 ```bash   
 cd /qL-desktop
 python -m websockify --web ./novnc --target-config=./data/token/vnc_tokens.conf 9001 & python app.py
