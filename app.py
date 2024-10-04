@@ -62,7 +62,7 @@ def save_tokens(hosts):
 def login():
     data = request.get_json()
     user = load_user()
-    if data['username'] == USER_INFO['username'] and data['password'] == USER_INFO['password']:
+    if data['username'] == user['username'] and data['password'] == user['password']:
         session['logged_in'] = True  # 登录成功，设置会话
         return jsonify({'message': '登录成功'}), 200
     return jsonify({'message': '登录失败：用户名或密码错误'}), 401
