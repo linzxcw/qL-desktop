@@ -66,7 +66,8 @@ pip install -i https://pypi.tuna.tsinghua.edu.cn/simple numpy flask #换国内�
    >Run the command
 ```bash   
 cd ./qL-desktop
-python -m websockify --web ./novnc --target-config=./data/token/vnc_tokens.conf 9001 & python app.py
+python -m websockify --web ./novnc --target-config=./data/token/vnc_tokens.conf 9001 & python app.py #Non encrypted connection
+python -m websockify --web ./novnc --cert ./data/ssl/vnc1.pem --target-config=./data/token/vnc_tokens.conf 9001 & python app.py #ssl encrypted connection
 ```
 
 4. Log in to the web page
