@@ -65,7 +65,10 @@ pip install -i https://pypi.tuna.tsinghua.edu.cn/simple numpy flask #换国内�
    >运行命令
 ```bash   
 cd ./qL-desktop
+# 非加密连接
 python -m websockify --web ./novnc --target-config=./data/token/vnc_tokens.conf 9001 & python app.py
+# ssl加密连接
+python -m websockify --web ./novnc --cert ./data/ssl/vnc1.pem --target-config=./data/token/vnc_tokens.conf 9001 & python app.py
 ```
 
 4. 登录网页
@@ -74,7 +77,7 @@ python -m websockify --web ./novnc --target-config=./data/token/vnc_tokens.conf 
   
   用户名和密码默认是admin、password
   
-  服务器地址默认是 http://服务器ip:9001
+  服务器地址默认是 https://服务器ip:9001（非加密连接填http://服务器ip:9001）
 
 
 
