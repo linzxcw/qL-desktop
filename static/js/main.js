@@ -149,7 +149,7 @@ function editHost(hostName) {
 // 连接主机
 function connectHost(hostName, password, serverAddress) {
     // 生成目标 URL
-    const url = `http://${serverAddress}/vnc.html?path=websockify/?token=${hostName}&password=${password}`;
+    const url = `${serverAddress}/vnc.html?path=websockify/?token=${hostName}&password=${password}`;
     console.log(`连接到主机 ${hostName}: ${url}`);
     
     // 在新标签页中打开该 URL
