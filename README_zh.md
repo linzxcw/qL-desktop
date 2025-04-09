@@ -78,7 +78,7 @@ python -m websockify --web ./novnc --cert ./data/ssl/vnc1.pem --target-config=./
   用户名和密码默认是admin、password
   
   服务器地址默认是 https://服务器ip:9001（非加密连接填http://服务器ip:9001）
-
+  (记得要填http或者https，不然会报错)
 
 
 ## 界面截图
